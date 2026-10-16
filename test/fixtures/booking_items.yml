@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seats_booked: 1
+  price: 9.99
+  booking: one
+  ticket_type: one
+
+two:
+  seats_booked: 1
+  price: 9.99
+  booking: two
+  ticket_type: two

@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_16_075522) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_16_075609) do
+  create_table "booking_items", force: :cascade do |t|
+    t.integer "seats_booked"
+    t.decimal "price"
+    t.integer "booking_id", null: false
+    t.integer "ticket_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_booking_items_on_booking_id"
+    t.index ["ticket_type_id"], name: "index_booking_items_on_ticket_type_id"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.integer "ticket_quantity"
     t.decimal "amount_paid"
@@ -79,6 +90,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_16_075522) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "booking_items", "bookings"
+  add_foreign_key "booking_items", "ticket_types"
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
   add_foreign_key "events", "categories"
