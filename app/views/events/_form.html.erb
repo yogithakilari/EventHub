@@ -1,0 +1,63 @@
+<%= form_with model: @event do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <% @event.errors.full_messages_for(:title).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <% @event.errors.full_messages_for(:description).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :venue_name %>
+    <%= form.text_field :venue_name %>
+  </div>
+
+  <div>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :start_time %>
+    <%= form.datetime_local_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time %>
+    <%= form.datetime_local_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, ["draft", "published", "cancelled"] %>
+  </div>
+
+  <div>
+    <%= form.label :age_limit %>
+    <%= form.number_field :age_limit %>
+  </div>
+
+  <div>
+    <%= form.label :pet_friendly %>
+    <%= form.check_box :pet_friendly %>
+  </div>
+
+  <div>
+    <%= form.label :category_id, "Category" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name,
+        prompt: "Select a category" %>
+    <% @event.errors.full_messages_for(:category).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
