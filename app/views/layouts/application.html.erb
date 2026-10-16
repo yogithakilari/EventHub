@@ -11,6 +11,16 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <p>Logged in as: <%= current_user.email %></p>
+
+      <% if current_user.role == "organiser" %>
+        <p>Approval Status: <%= current_user.approval_status %></p>
+      <% end %>
+
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
