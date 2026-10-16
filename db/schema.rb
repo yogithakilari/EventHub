@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_10_16_075609) do
+ActiveRecord::Schema[7.1].define(version: 2026_10_16_075637) do
   create_table "booking_items", force: :cascade do |t|
     t.integer "seats_booked"
     t.decimal "price"
@@ -40,6 +40,18 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_16_075609) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discount_codes", force: :cascade do |t|
+    t.string "code"
+    t.integer "discount_percentage"
+    t.datetime "expiry"
+    t.integer "max_uses"
+    t.boolean "is_active"
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_discount_codes_on_event_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -94,6 +106,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_10_16_075609) do
   add_foreign_key "booking_items", "ticket_types"
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
+  add_foreign_key "discount_codes", "events"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users"
   add_foreign_key "ticket_types", "events"
