@@ -1,0 +1,19 @@
+<h1>Ticket Types</h1>
+
+<%= link_to "New Ticket Type", new_ticket_type_path %>
+
+<ul>
+  <% @ticket_types.each do |ticket_type| %>
+    <li>
+      <%= link_to ticket_type.name, ticket_type_path(ticket_type) %>
+          Price: <%= ticket_type.price %>
+         Seats: <%= ticket_type.seats %>
+
+      <%= link_to "Edit", edit_ticket_type_path(ticket_type) %>
+
+      <%= button_to "Delete", ticket_type_path(ticket_type),
+          method: :delete,
+          data: { turbo_confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>

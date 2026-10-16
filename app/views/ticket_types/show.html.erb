@@ -1,0 +1,24 @@
+<h1>Ticket Type Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket_type.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @ticket_type.price %>
+</p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @ticket_type.seats %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @ticket_type.event.title %>
+</p>
+
+<%= link_to "Edit", edit_ticket_type_path(@ticket_type) %>
+<%= link_to "Back to Ticket Types", ticket_types_path %>

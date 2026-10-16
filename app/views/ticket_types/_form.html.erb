@@ -1,0 +1,40 @@
+<%= form_with model: @ticket_type do |form| %>
+
+  <% if @ticket_type.errors.any? %>
+    <div>
+      <h2>
+        <%= pluralize(@ticket_type.errors.count, "error") %>
+        prevented this ticket type from being saved:
+      </h2>
+
+      <ul>
+        <% @ticket_type.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :price %>
+    <%= form.number_field :price, min: 0, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.label :seats %>
+    <%= form.number_field :seats, min: 1 %>
+  </div>
+
+  <div>
+    <%= form.label :event_id, "Event" %>
+    <%= form.collection_select :event_id, @events, :id, :title,
+        prompt: "Select an event" %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
